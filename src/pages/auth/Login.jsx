@@ -1,22 +1,20 @@
 import React, { useState } from "react"
+// import axios from "axios"
+import { useDispatch } from "react-redux"
+import { loginRequst } from "../../redux/actions/loginAction"
 
 const Login = () => {
-  const [loginData,setLoginData] = useState({
-    email:"",
-    password:""
-  })
+  const [emailId, setEmailId] = useState("")
+  const [password, setPassword] = useState("")
+  const dispatch = useDispatch()
 
-  const handleChange =(e)=>{
-    const { value, name } = e.target
-    setLoginData({ ...loginData, [name]: value })
-    
-
-  }
-
-//   console.log(loginData)
-  const handleSubmit =(e)=>{
-  e.preventDefault()
-  console.log(loginData)
+  const handleLogin = (e) => {
+    e.preventDefault()
+    if (emailId && password) {
+      dispatch(loginRequst({ emailId, password }))
+    } else {
+      console.log("Please fill in both fields.")
+    }
   }
 
   return (
@@ -24,25 +22,27 @@ const Login = () => {
       <div className="card bg-neutral text-neutral-content w-96 p-3">
         <div className="card-body items-center text-center">
           <h2 className="card-title">Login..🤷‍♂️</h2>
-          <form action="" onSubmit={ handleSubmit}>
+          <form action="" onSubmit={handleLogin}>
             <input
-              type="email"
+              type="emailId"
               placeholder="Enter your Email"
-              className="rounded-md py-1 px-2 mb-3"
-              value={loginData.email}
-              onChange={handleChange}
-              name="email"
+              className="rounded-md py-1 px-2 mb-3 text-black"
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
+              name="emailId"
             />
             <input
               type="password"
               placeholder="Enter your Password"
               className="rounded-md py-1 px-2 mb-3"
-              value={loginData.password}
+              value={password}
               name="password"
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div>
-              <button className="bg-blue-700 px-8 py-2 rounded-md font-semibold hover:bg-slate-500">
+              <button
+                className="bg-blue-700 px-8 py-2 rounded-md font-semibold hover:bg-slate-500"
+                onClick={handleLogin}>
                 Login
               </button>
             </div>
