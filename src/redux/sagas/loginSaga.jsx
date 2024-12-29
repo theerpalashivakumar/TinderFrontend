@@ -4,13 +4,13 @@ import { loginFailure, loginSuccess } from "../actions/loginAction"
 import axios from "axios"
 
 const apiUrl = import.meta.env.VITE_BACKEND_URL;
-console.log(apiUrl) // Should output: http://localhost:5001
-
 
 const fetchLoginRequest = async (loginData) => {
   console.log("Trigger the saga-2")
   try {
-    const response = await axios.post(apiUrl+"/login", loginData)
+    const response = await axios.post(apiUrl + "/login", loginData, {
+      // withCredentials: true,
+    })
     console.log(response)
     return response.data
   } catch (err) {
