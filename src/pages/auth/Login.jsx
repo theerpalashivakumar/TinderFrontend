@@ -1,12 +1,15 @@
 import React, { useState } from "react"
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector,  } from "react-redux"
 import { loginRequst } from "../../redux/actions/loginAction"
 
 const Login = () => {
   const [emailId, setEmailId] = useState("")
   const [password, setPassword] = useState("")
+  const users = useSelector((state) => state?.user)
+  console.log(users)
   const dispatch = useDispatch()
+
 
   const handleLogin = () => {
     if (!emailId || !password) {
