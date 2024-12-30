@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-// import axios from "axios"
+
 import { useDispatch } from "react-redux"
 import { loginRequst } from "../../redux/actions/loginAction"
 
@@ -8,13 +8,16 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const dispatch = useDispatch()
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (emailId && password) {
-      dispatch(loginRequst({ emailId, password }))
-    } else {
-      console.log("Please fill in both fields.")
+  const handleLogin = () => {
+    if (!emailId || !password) {
+      console.error("Email ID and Password are required!")
+      return
     }
+    dispatch(loginRequst({ emailId, password }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
   }
 
   return (
@@ -22,7 +25,7 @@ const Login = () => {
       <div className="card bg-neutral text-neutral-content w-96 p-3">
         <div className="card-body items-center text-center">
           <h2 className="card-title">Login..🤷‍♂️</h2>
-          <form action="" onSubmit={handleLogin}>
+          <form action="" onSubmit={handleSubmit}>
             <input
               type="emailId"
               placeholder="Enter your Email"

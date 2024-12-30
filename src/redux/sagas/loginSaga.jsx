@@ -3,13 +3,14 @@ import { LOGIN_REQUEST } from "../actionTypes/loginType"
 import { loginFailure, loginSuccess } from "../actions/loginAction"
 import axios from "axios"
 
-const apiUrl = import.meta.env.VITE_BACKEND_URL;
+const apiUrl = import.meta.env.VITE_BACKEND_URL
+console.log(apiUrl)
 
 const fetchLoginRequest = async (loginData) => {
-  console.log("Trigger the saga-2")
+  console.log("Login payload:", loginData) // Debug the payload
   try {
-    const response = await axios.post(apiUrl + "/login", loginData, {
-      // withCredentials: true,
+    const response = await axios.post(`${apiUrl}/login`, loginData,{withCredentials:true}, {
+      headers: { "Content-Type": "application/json" },
     })
     console.log(response)
     return response.data
@@ -19,6 +20,7 @@ const fetchLoginRequest = async (loginData) => {
     throw new Error(errorMessage)
   }
 }
+
 
 function* watchLogin(action) {
   try {
