@@ -1,4 +1,11 @@
-import { LOG_OUT_USER, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actionTypes/loginType";
+import {
+  LOG_OUT_FAILURE,
+  LOG_OUT_REQUEST,
+  LOG_OUT_SECCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+} from "../actionTypes/loginType"
 
 
 const initialState = {
@@ -31,9 +38,21 @@ const loginReducer =(state=initialState,action)=>{
          loading: false,
          error: action.payload,
        }
-     case LOG_OUT_USER:
+     case LOG_OUT_REQUEST:
        return {
-         ...initialState
+         ...state,
+         loading: true,
+         error: null,
+       }
+     case LOG_OUT_SECCESS:
+       return {
+         ...initialState,
+       }
+     case LOG_OUT_FAILURE:
+       return {
+         ...state,
+         loading: false,
+         error: action.payload,
        }
 
      default:

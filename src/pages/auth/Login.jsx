@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 
-import { useDispatch, useSelector,  } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginRequst } from "../../redux/actions/loginAction"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [emailId, setEmailId] = useState("")
@@ -9,14 +10,14 @@ const Login = () => {
   const users = useSelector((state) => state?.user)
   console.log(users)
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
 
   const handleLogin = () => {
     if (!emailId || !password) {
       console.error("Email ID and Password are required!")
       return
     }
-    dispatch(loginRequst({ emailId, password }))
+    dispatch(loginRequst({ emailId, password, navigate }))
   }
 
   const handleSubmit = (e) => {
@@ -51,6 +52,12 @@ const Login = () => {
                 onClick={handleLogin}>
                 Login
               </button>
+            </div>
+            <div className="mt-2">  
+              Don't have an Account{" "}
+              <span className="text-blue-500 font-semibold">
+                <Link to="/register">SignUp</Link>
+              </span>
             </div>
           </form>
         </div>

@@ -1,8 +1,15 @@
-import { LOG_OUT_USER, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../actionTypes/loginType"
+import {
+  LOG_OUT_FAILURE,
+  LOG_OUT_REQUEST,
+  LOG_OUT_SECCESS,
+  LOGIN_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+} from "../actionTypes/loginType"
 
-export const loginRequst = ({ emailId, password }) => ({
+export const loginRequst = ({ emailId, password, navigate }) => ({
   type: LOGIN_REQUEST,
-  payload: { emailId, password },
+  payload: { emailId, password, navigate },
 })
 
 export const loginSuccess = (userData) => ({
@@ -15,7 +22,15 @@ export const loginFailure = (error) => ({
   payload: error,
 })
 
-export const logOutUser= (error) => ({
-  type:LOG_OUT_USER,
-  payload: error,
+export const logOutRequest = ({navigate}) => ({
+  type: LOG_OUT_REQUEST,
+  payload: {navigate},
+})
+export const logOutSuccess = (data) => ({
+  type: LOG_OUT_SECCESS,
+  payload: data,
+})
+export const logOutFailure = (err) => ({
+  type: LOG_OUT_FAILURE,
+  payload: err,
 })

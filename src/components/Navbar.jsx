@@ -1,15 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logOutUser } from '../redux/actions/loginAction'
+import { logOutRequest } from '../redux/actions/loginAction'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { user, isAuthenticated } = useSelector((state) => state.login)
   console.log(user)
 
   const handleLogOut =()=>{
-    dispatch(logOutUser())
+    dispatch(logOutRequest({navigate}))
   }
 
   return (
@@ -28,16 +30,24 @@ const Navbar = () => {
           </div> */}
           {user && (
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar mr-4">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    // src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                    src={user?.photoUrl}
-                  />
+              <div className="flex items-center">
+                <div className="hidden md:block text-white font-semibold">
+                  Welcome{" "}
+                  <span className="font-bold text-blue-400 sm:block">
+                    {user.firstName}
+                  </span>
+                </div>
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar mr-4">
+                  <div className="w-10 rounded-full">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      // src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      src={user?.photoUrl}
+                    />
+                  </div>
                 </div>
               </div>
               <ul
