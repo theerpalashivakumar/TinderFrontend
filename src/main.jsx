@@ -20,7 +20,7 @@ import "./index.css"
 import { RouterProvider } from "react-router-dom"
 import router from "./routers/router.jsx"
 import { Provider } from "react-redux"
-import store from "./redux/store/index.jsx"
+import store from './store/index.js'
 import { ToastContainer } from "react-toastify" // Import ToastContainer
 import "react-toastify/dist/ReactToastify.css" // Import toast styles
 

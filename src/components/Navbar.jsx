@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { logOutRequest } from '../redux/actions/loginAction'
 import { useNavigate } from 'react-router-dom'
+import { logOutRequest } from '../store/auth/login/action'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const Navbar = () => {
   console.log(user)
 
   const handleLogOut =()=>{
-    dispatch(logOutRequest({navigate}))
+    dispatch(logOutRequest({ navigate }))
   }
 
   return (

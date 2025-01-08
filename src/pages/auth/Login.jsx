@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 
 import { useDispatch, useSelector } from "react-redux"
-import { loginRequst } from "../../redux/actions/loginAction"
 import { Link, useNavigate } from "react-router-dom"
+import { loginRequst } from "../../store/auth/login/action"
 
 const Login = () => {
   const [emailId, setEmailId] = useState("")
